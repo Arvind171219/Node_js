@@ -1,9 +1,12 @@
+// Synchronous or blocking
+// - line by line execution
+
+// Asynchronous or non-blocking
+// - line by line execution not guaranteed
+// - callbacks will fire
 
 const fs = require("fs");
-let text = fs.readFileSync("dele.txt","utf-8");
-text =text.replace("Arvind" ,"Rahul");
-
-console.log("the content of the file is ");
-console.log(text);
-console.log("creating a new file .......")
-fs.writeFileSync("rahul.txt",text)
+fs.readFile("dele.txt", "utf-8", (err, data)=>{
+    console.log(data);
+});
+console.log("This is a message");
