@@ -1,12 +1,14 @@
-// Synchronous or blocking
-// - line by line execution
+const http = require('http');
+const fs = require('fs');
 
-// Asynchronous or non-blocking
-// - line by line execution not guaranteed
-// - callbacks will fire
+const fileContent = fs.readFileSync('video1.html');
 
-const fs = require("fs");
-fs.readFile("dele.txt", "utf-8", (err, data)=>{
-    console.log(data);
+const server = http.createServer((req,res)=>{
+    res.writeHead(200,{'content-type':'text/html'});
+    res.end(fileContent)
 });
-console.log("This is a message");
+
+
+server.listen(80,'127.0.0.1',()=>{
+    console.log("Listening on Port 80");
+});
